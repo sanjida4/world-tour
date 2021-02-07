@@ -34,5 +34,16 @@ const displayCountryDetail = name => {
     const url = `https://restcountries.eu/rest/v2/name/${name}`
     fetch(url)
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => renderCountryInfo(data[0]));
+}
+
+const renderCountryInfo = country => {
+    console.log(country);
+    const countryDiv = document.getElementById('countryDetail');
+    countryDiv.innerHTML = `
+        <h1>${country.name}</h1>
+        <p>population: ${country.population}</p>
+        <p>area: ${country.area}</p>
+        <img src="${country.flag}">
+    `
 }
